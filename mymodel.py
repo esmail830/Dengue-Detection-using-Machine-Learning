@@ -36,8 +36,8 @@ model = KNeighborsClassifier(
     p=2
 )
 model.fit(X_train, y_train)
-#joblib.dump(model, "knn_model.pkl")
-#joblib.dump(scaler, "scaler.pkl")
+joblib.dump(model, "knn_model.pkl")
+joblib.dump(scaler, "scaler.pkl")
 
 # 6. التقييم
 y_pred = model.predict(X_test)
@@ -50,9 +50,6 @@ print("\n📌 مصفوفة الالتباس:")
 print(confusion_matrix(y_test, y_pred))
 
 print("\nROC-AUC:", roc_auc_score(y_test, y_prob))
-import matplotlib.pyplot as plt
-from sklearn.metrics import roc_curve, auc, precision_recall_curve, confusion_matrix
-import seaborn as sns
 
 # احتمالات التنبؤ
 y_prob = model.predict_proba(X_test)[:,1]
@@ -89,3 +86,4 @@ plt.xlabel("Predicted")
 plt.ylabel("Actual")
 plt.title("Confusion Matrix")
 plt.show()
+
